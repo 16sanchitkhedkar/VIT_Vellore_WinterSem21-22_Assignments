@@ -1,0 +1,13 @@
+import socket
+client = socket.socket()
+client.connect(('127.0.0.1', 1233))
+response = client.recv(2048)
+name = input(response.decode())	
+client.send(str.encode(name))
+response = client.recv(2048)
+password = input(response.decode())	
+client.send(str.encode(password))
+response = client.recv(2048)
+response = response.decode()
+print(response)
+client.close()
