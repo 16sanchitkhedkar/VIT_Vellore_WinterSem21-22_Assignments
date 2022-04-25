@@ -67,6 +67,6 @@ while True:
     subnet7="Subnet 7-"+str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(subnet7beginaddr)+" - "+str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(subnet7endaddr)+"\n"
     subnet8="Subnet 8-"+str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(subnet8beginaddr)+" - "+str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(subnet8endaddr)+"\n"
     subnets=subnet1+subnet2+subnet3+subnet4+subnet5+subnet6+subnet7+subnet8
-    firstLastaddr=Beginaddr+Lastaddr
+    firstLastaddr=Beginaddr+"\n"+Lastaddr
     sock.sendto(firstLastaddr.encode(),addr)
     sock.sendto(subnets.encode(),addr)
