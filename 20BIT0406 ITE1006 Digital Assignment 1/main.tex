@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Allows you to insert figures
+\usepackage{amsmath} % Allows you to do equations
+\usepackage{fancyhdr} % Formats the header
+\usepackage{geometry} % Formats the paper size, orientation, and margins
+\usepackage[style=authoryear-ibid,backend=biber]{biblatex} % Allows you to do citations - does Harvard style and compatible with Zotero
+\addbibresource{Example.bib} % Tells LaTeX where the citations are coming from. This is imported from Zotero
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{background}
+\usepackage{minted}
+\renewcommand*{\nameyeardelim}{\addcomma\space} % Adds comma in in-text citations
+\linespread{1.5} % About 1.5 spacing in Word
+\setlength{\parindent}{0pt} % No paragraph indents
+\setlength{\parskip}{1em} % Paragraphs separated by one line
+\renewcommand{\headrulewidth}{0pt} % Removes line in header
+\geometry{a4paper, portrait, margin=1in}
+\setlength{\headheight}{14.49998pt}
+\backgroundsetup{scale=1,angle=0,opacity=0.175,contents={\includegraphics[scale=0.25]{1200px-Vellore_Institute_of_Technology_seal_2017.png}}}
+
+
+\begin{document}
+\begin{titlepage}
+\NoBgThispage
+   \begin{center}
+        \begin{figure}[h] % h - Place the float here, i.e., approximately at the same point it occurs in the source text (however, not exactly at the spot)
+        \centering
+        \includegraphics[width=15cm]{1583124354phpJTtnK5.png}
+        \end{figure}
+
+        \Huge{Digital Assignment 1}
+
+        \vspace{0.5cm}
+        \LARGE{20BIT0406 - Sanchit Sandeep Khedkar}
+       
+        \vspace{2.5 cm}
+
+        \vspace{0.25 cm}
+        \Large{ITE1006 - Theory of Computation}
+        \large{VL2021220500411}
+       
+
+       \vfill
+    \end{center}
+\end{titlepage}
+\newpage
+Q. Discuss in detail about compilers in a programming language. Discuss how finite automata can be helpful in compilers.
+\par
+Ans-\\
+A compiler is a software program that is responsible for changing initial programmed code into a more basic machine language closer to the “bare metal” of the hardware, and more readable by the computer itself. A high-level source code that is written by a developer in a high-level programming language gets translated into a lower-level object code by the compiler, to make the result “digestible” to the processor.
+\\
+Formally, the output of the compilation is called object code or sometimes an object module. The object code is machine code that the processor can perform one instruction at a time.
+\\
+Compilers are needed because of the way that a traditional processor executes object code. The processor uses logic gates to route signals on a circuit board, manipulating binary high and low signals to work the computer’s arithmetic logic unit. But that’s not how a human programmer builds the code: unlike this basic, binary machine language, the initial high-level code consists of variables, commands, functions, calls, methods and other assorted fixtures represented in a mixture of arithmetic and lexical syntax. All of that needs to be put into a form that the computer can understand in order to execute the program.
+A compiler executes four major steps:
+\\
+\begin{itemize}
+\item Scanning: The scanner reads one character at a time from the source code and keeps track of which character is present in which line.
+
+\item Lexical Analysis: The compiler converts the sequence of characters that appear in the source code into a series of strings of characters (known as tokens), which are associated by a specific rule by a program called a lexical analyzer. A symbol table is used by the lexical analyzer to store the words in the source code that correspond to the token generated.
+
+\item Syntactic Analysis: In this step, syntax analysis is performed, which involves preprocessing to determine whether the tokens created during lexical analysis are in proper order as per their usage. The correct order of a set of keywords, which can yield a desired result, is called syntax. The compiler has to check the source code to ensure syntactic accuracy.
+
+\item Semantic Analysis: This step consists of several intermediate steps. First, the structure of tokens is checked, along with their order with respect to the grammar in a given language. The meaning of the token structure is interpreted by the parser and analyzer to finally generate an intermediate code, called object code.
+\end{itemize}
+The object code includes instructions that represent the processor action for a corresponding token when encountered in the program. Finally, the entire code is parsed and interpreted to check if any optimizations are possible. Once optimizations can be performed, the appropriate modified tokens are inserted in the object code to generate the final object code, which is saved inside a file.
+\par
+The concept of Finite Automata is used in two of the three phases of the process of compilation.
+\\
+The first one, being Lexical Analysis, uses Regular Expressions to tokenize the input. Generally, Finite Automata are required to implement regular expressions. Being the first phase of the compiler, its job is to read one character at a time from the source program and to generate Lexemes. The process of forming the words based on pattern rules and converting them into tokens is called Lexeme. These tokens are divided into keywords, identifiers, operators, delimiters, and punctuation symbols. Each token is represented with a pair of values (identifier, number). It recognizes the various tokens with the help of regular expressions and pattern rules and classifies them. So, Tokens are recognized by regular grammar and are implemented by finite automata. In any programming language, the reorganization of tokens is the first and most important step. In compiler design, regular expressions are used to formalize the specification of tokens and for specifying regular languages.
+\\
+What’s more interesting is the part of the second phase, which is Parsing. Our goal here is to build what’s known as an Abstract Syntax Tree (or AST or just Syntax Tree). An AST is formed when you take a piece of code written in a formal language and represent its abstract syntactic structure of it. Constructs occurring in the text are denoted by nodes.
+\\
+The drawback of this, that is the Context-Free Grammar (CFG) of the language must be left-factored which means that it has to be from a left-recursive form to an equivalent non-left-recursive form. GCC uses this form of parser
+\\
+On the contrary, Bottom-up parsing goes the other way, you provide it with a string of terminals and it reverts back with a single, parsed, non-terminal symbol. For each CFG, the automaton that is constructed has a bunch of states, either to represent the production of a non-terminal state or to represent each terminal state.
+\end{document}
