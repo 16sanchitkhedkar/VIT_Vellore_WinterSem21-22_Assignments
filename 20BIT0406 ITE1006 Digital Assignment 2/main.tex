@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Allows you to insert figures
+\usepackage{amsmath} % Allows you to do equations
+\usepackage{fancyhdr} % Formats the header
+\usepackage{geometry} % Formats the paper size, orientation, and margins
+\usepackage[style=authoryear-ibid,backend=biber]{biblatex} % Allows you to do citations - does Harvard style and compatible with Zotero
+\addbibresource{Example.bib} % Tells LaTeX where the citations are coming from. This is imported from Zotero
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{background}
+\usepackage{minted}
+\renewcommand*{\nameyeardelim}{\addcomma\space} % Adds comma in in-text citations
+\linespread{1.5} % About 1.5 spacing in Word
+\setlength{\parindent}{0pt} % No paragraph indents
+\setlength{\parskip}{1em} % Paragraphs separated by one line
+\renewcommand{\headrulewidth}{0pt} % Removes line in header
+\geometry{a4paper, portrait, margin=1in}
+\setlength{\headheight}{14.49998pt}
+\backgroundsetup{scale=1,angle=0,opacity=0.175,contents={\includegraphics[scale=0.25]{1200px-Vellore_Institute_of_Technology_seal_2017.png}}}
+
+
+\begin{document}
+\begin{titlepage}
+\NoBgThispage
+   \begin{center}
+        \begin{figure}[h] % h - Place the float here, i.e., approximately at the same point it occurs in the source text (however, not exactly at the spot)
+        \centering
+        \includegraphics[width=15cm]{1583124354phpJTtnK5.png}
+        \end{figure}
+
+        \Huge{Digital Assignment 2}
+
+        \vspace{0.5cm}
+        \LARGE{20BIT0406 - Sanchit Sandeep Khedkar}
+       
+        \vspace{2.5 cm}
+
+        \vspace{0.25 cm}
+        \Large{ITE1006 - Theory of Computation}
+        \large{VL2021220500411}
+       
+
+       \vfill
+    \end{center}
+\end{titlepage}
+\newpage
+Q. Discuss the limitations of Context Free Grammar and explain with examples how Context Sensitive
+Languages can overcome those limitations.
+\par
+Ans-\\
+Considering the following grammar-
+\begin{verbatim}
+terminal alphabet: the words in upper case
+      non-terminal alphabet: the items in brackets
+      initial symbol: [sentence]
+      rules:
+        [sentence] -> [nphrase] [verb] [nphrase]
+        [nphrase]  -> THE [nqual]
+        [nqual]    -> [noun] | [adjseq] [noun] | [noun] [rel]
+        [adjseq]   -> [adj] | [adjseq] [adj]
+        [rel]      -> WHICH [nphrase] [verb]
+        [adj]      -> BIG | BAD | RED
+        [verb]     -> EAT | EATS | BITE | BUILDS | LIVE IN
+        [noun]     -> HOUSE | CAT | CATS | DOGS | BRAN
+\end{verbatim}
+The given grammar not only generates the grammatically correct sentence
+\begin{verbatim}
+    THE RED CAT EATS THE BRAN
+\end{verbatim}
+But also the gramatically incorrect sentence
+\begin{verbatim}
+    THE RED CAT EAT THE BRAN
+\end{verbatim}
+This illustrates an important limitation of context-free grammars. Once a node on a derivation tree has been developed into subnodes, no further communication between these subnodes is possible. Subsequent rewriting rules are applied to a subnode without consideration of its context; so, nothing which happens down one subtree can affect what happens down another. In the above example, once [sentence] has developed into [nphrase][verb][nphrase], nothing in the cfg mechanism can prevent the subject [nphrase] from developing into a singular noun phrase and [verb] into a plural verb.
+\par
+A similar situation arises in programming languages. The syntax should ensure that only declared variables appear in subsequent statements; and that variables declared as a particular type appear only in contexts appropriate to that type. But nothing in the cfg mechanism can prevent the generation of:
+\begin{verbatim}
+Boolean x;
+x = 16;
+\end{verbatim}
+Parsing algorithms must therefore suspend context-free analysis whenever a variable is detected to ensure that the variable is valid within its context.
+\\
+A second limitation arises from the fact that, once a rule A -\textgreater BCD has been applied during a cfg derivation, all symbols in the final string derived from B must precede all those in the final string derived from C, which in their turn precede those in the string derived from D.
+\\
+If we consider the sentences:
+\begin{verbatim}
+THE RED CAT WILL EAT THE BRAN
+WILL THE RED CAT EAT THE BRAN?
+THE BRAN WILL BE EATEN BY THE RED CAT
+\end{verbatim}
+the second and third, though surely related to the first, cannot be obtained from it by the application of additional cf rules.
+\\
+We can, of course, write separate sections of the grammar to yield interrogative and passive sentences, just as we can separate singular and plural phrases in the earlier example, but this is unsatisfying as a means of describing linguistic processes. Furthermore, it would not be feasible to apply the same technique to variable names in a programming language.
+\\
+A device used in some linguistic theories is to add "transformational rules", which allow the first sentence to be transformed into the second and third. The first sentence is then referred to as indicating the "deep structure" of the second and third, while the latter represent the "surface structure"
+\newpage
+Considering the context-sensitive grammar:
+\begin{verbatim}
+VN: {S, A, B}
+VT: {a, b, c}
+Initial Symbol: S
+P: {S-> Abc, S -> ABSc, BA -> AB, Bb -> bb, A -> a}
+\end{verbatim}
+and attempting to derive some of the strings of its language.
+\\
+You will quickly discover that a type 1 grammar differs from a cfg in two significant ways: you can get "blocked" derivations, i.e. you can derive strings containing non-terminals to which no rules can be applied, and the order in which the rules are applied matters. Indeed, to prove that a type 1 grammar yields ONLY the strings you want, you usually have to show that applying the rules in an unintended order leads only to blocked strings.
+\\
+This grammar derives all strings of the form {anbncn | n \textgreater= 1}.
+\\
+To see this, label the rules (i) to (v). Begin by applying rule (ii) n - 1 times, followed by rule (i) once. This derives ABAB ... Abcc ... c in which there are n A's, n B's and b's, and n c's.
+\\
+Rule (iii) allows B to move rightwards past A, so that repeated applications permit the B's to move out from among the A's. Rule (iv) allows B to change into b, but only on contact with an existing b. Now the initial b is to the right of all A's. So no B becomes b until it has crossed over all A's to its right. Rule (v) simply permits A to become a.
+\\
+Note that application of these rules in unexpected order does not yield anything extra. For example, if we apply rule (iii) before rule (i), some movement of B's takes place earlier than intended, but no B can ever get across the S, so that (i) must be applied before (iv) can be used. If (v) is applied too early, some B's may be locked permanently to the left of a's. etc.
+\end{document}
