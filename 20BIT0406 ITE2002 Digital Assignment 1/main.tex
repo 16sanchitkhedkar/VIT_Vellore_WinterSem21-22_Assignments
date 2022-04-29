@@ -1,0 +1,260 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Allows you to insert figures
+\usepackage{amsmath} % Allows you to do equations
+\usepackage{fancyhdr} % Formats the header
+\usepackage{geometry} % Formats the paper size, orientation, and margins
+\usepackage[style=authoryear-ibid,backend=biber]{biblatex} % Allows you to do citations - does Harvard style and compatible with Zotero
+\addbibresource{Example.bib} % Tells LaTeX where the citations are coming from. This is imported from Zotero
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{background}
+\usepackage{minted}
+\renewcommand*{\nameyeardelim}{\addcomma\space} % Adds comma in in-text citations
+\linespread{1.5} % About 1.5 spacing in Word
+\setlength{\parindent}{0pt} % No paragraph indents
+\setlength{\parskip}{1em} % Paragraphs separated by one line
+\renewcommand{\headrulewidth}{0pt} % Removes line in header
+\geometry{a4paper, portrait, margin=1in}
+\setlength{\headheight}{14.49998pt}
+\backgroundsetup{scale=1,angle=0,opacity=0.175,contents={\includegraphics[scale=0.25]{1200px-Vellore_Institute_of_Technology_seal_2017.png}}}
+
+
+\begin{document}
+\begin{titlepage}
+\NoBgThispage
+   \begin{center}
+        \begin{figure}[h] % h - Place the float here, i.e., approximately at the same point it occurs in the source text (however, not exactly at the spot)
+        \centering
+        \includegraphics[width=15cm]{1583124354phpJTtnK5.png}
+        \end{figure}
+
+        \Huge{Digital Assignment 1}
+
+        \vspace{0.5cm}
+        \LARGE{20BIT0406 - Sanchit Sandeep Khedkar}
+       
+        \vspace{2.5 cm}
+
+        \vspace{0.25 cm}
+        \Large{ITE2002 - Operating Systems}
+        \large{VL2021220500440}
+       
+
+       \vfill
+    \end{center}
+\end{titlepage}
+\newpage
+\section*{Windows Operating System}
+\subsection*{History}
+In 1988, Microsoft decided to develop a “new technology” (NT) portable operating system that supported both the OS/2 and POSIX APIs
+Originally, NT was supposed to use the OS/2 API as its native environment but during development NT was changed to use the Win32 API, reflecting the popularity of Windows 3.0. Windows NT Version 4.0 adopted the Windows 95 user interface and incorporated Internet web-server andweb-browser software. In addition, user-interface routines and
+all graphics code were moved into the kernel to improve performance (with
+the side effect of decreased system reliability and significant loss of security).
+Although previous versions of NT had been ported to other microprocessor
+architectures (including a brief 64-bit port to Alpha AXP 64), the Windows
+2000 version, released in February 2000, supported only IA-32-compatible processors
+due to marketplace factors. Windows 2000 incorporated significant
+changes. It added Active Directory (an X.500-based directory service), better
+networking and laptop support, support for plug-and-play devices, a distributed
+file system, and support for more processors and more memory.
+\subsubsection*{Windows XP, Vista, 7}
+In October 2001, Windows XP was released as both an update to the Windows
+2000 desktop operating system and a replacement for Windows 95/98. In April
+2003, the server edition of Windows XP (called Windows Server 2003) became
+available.Windows XP updated the graphical user interface (GUI) with a visual
+design that took advantage of more recent hardware advances and many
+new ease-of-use features. Numerous features were added to automatically
+repair problems in applications and the operating system itself. Because of
+these changes,Windows XP provided better networking and device experience
+(including zero-configuration wireless, instant messaging, streaming media,
+and digital photography/video). Windows Server 2003 provided dramatic
+performance improvements for large multiprocessors systems, as well as better
+reliability and security than earlier Windows operating systems.
+The long-awaited update to Windows XP, called Windows Vista, was
+released in January 2007, but it was not well received. Although Windows
+Vista included many improvements that later continued into Windows 7, these
+improvements were overshadowed by Windows Vista’s perceived sluggishness
+and compatibility problems. Microsoft responded to criticisms of Windows
+Vista by improving its engineering processes and working more closely
+with the makers of Windows hardware and applications.
+The result was Windows 7, which was released in October 2009, along
+with corresponding server edition called Windows Server 2008 R2. Among
+the significant engineering changes was the increased use of event tracing
+rather than counters or profiling to analyze system behavior. Tracing runs
+constantly in the system, watching hundreds of scenarios execute. Scenarios
+include process startup and exit, file copy, and web-page load, for example.
+When one of these scenarios fails, or when it succeeds but does not perform
+well, the traces can be analyzed to determine the cause.
+\subsubsection*{Windows 8}
+Three years later, in October 2012—amid an industry-wide pivot toward
+mobile computing and the world of apps—Microsoft released Windows 8,
+which represented the most significant change to the operating system since
+Windows XP. Windows 8 included a new user interface (named Metro) and a
+new programming model API (named WinRT). It also included a new way of
+managing applications (which ran under a new sandbox mechanism) through
+a package system that exclusively supported the new Windows Store, a competitor
+to the Apple App Store and the Android Store.
+\subsubsection*{Windows 10}
+With the release of Windows 10 in July 2015 and its server companion,
+Windows Server 2016, in October 2016, Microsoft shifted to a “Windows-as-a-Service” (WaaS) model (with included periodic functionality improvements).
+Windows 10 receives monthly incremental improvements called “feature
+rollups,” as well as eight-month feature releases called “updates.” Windows 10 reintroduced the start menu, restored keyboard support, and
+deemphasized full-screen applications and live tiles. From the user’s perspective,
+these changes brought back the ease of use that users expected from
+Windows-based desktop operating systems. Additionally, Metro (which was
+renamed Modern) was redesigned so that Windows Store–packaged applications
+could be run on the regular desktop side by side with legacy applications.
+Finally, a new mechanism called the Windows Desktop Bridge made it possible
+to place Win32 applications in the Windows Store, mitigating the lack of
+applications written specifically for the newer systems. Meanwhile, Microsoft
+added support for C++11, C++14, and C++17 in the Visual Studio product,
+and many new APIs were added to the traditional Win32 programming API.
+\subsection*{Design Principles}
+\subsubsection*{Security}
+Windows traditionally based security on discretionary access controls. System
+objects, including files, registry keys, and kernel synchronization objects,
+are protected by access-control lists (ACLs). ACLs are vulnerable
+to user and programmer errors, however, as well as to the most common
+attacks on consumer systems, in which the user is tricked into running
+code, often while browsing the Web. Windows Vista introduced a mechanism
+called integrity levels that acts as a rudimentary capability system for controlling
+access. Objects and processes are marked as having no, low, medium,
+or high system integrity. The integrity level determines what rights the objects
+and processes will have.Windows 10 further strengthened the security model by introducing a
+combination of attribute-based access control (ABAC) and claim-based access
+control (CABC). Both features are used to implement dynamic access control
+(DAC) on server editions, aswell as to support the capability-based system used
+by Windows Store applications and by Modern and packaged applications.
+Windows uses encryption as part of common protocols such as those used
+to communicate securely with websites. Encryption is also used to protect user
+files stored on secondary storage.Windows 7 and later versions allow users to easily encrypt entire volumes, aswell as removable storage devices such as USB
+flash drives, with a feature called BitLocker. These types of security features focus on user and data security, but they
+are vulnerable to highly privileged programs that parse arbitrary content
+and that can be tricked due to programming errors into executing malicious
+code. Therefore, Windows also includes security measures often referred to
+as “exploit mitigations.” These measures include wide-scope mitigations such
+as address-space layout randomization (ASLR), Data Execution Prevention
+(DEP), Control-Flow Guard (CFG), and Arbitrary Code Guard (ACG), as well as
+narrow-scope (targeted) mitigations specific to various exploitation techniques.
+Because DEP prevents attacker-controlled data from being executed as
+code, malicious developers moved on to code reuse attacks, in which existing
+executable code inside the program is reused in unexpected ways. (Only
+certain parts of the code are executed, and the flow is redirected from one
+instruction stream to another.) ASLR thwarts many forms of such attacks by
+randomizing the location of executable (and data) regions of memory, making
+it harder for code-reuse attacks to know where existing code is located. This
+safeguard makes it likely that a system under attack by a remote attacker will
+fail or crash.Another important aspect of security is integrity. Windows offers several
+digital signature facilities as part of its code integrity features. Windows uses
+digital signatures to sign operating system binaries so that it can verify that
+the files were produced by Microsoft or another known company. In non-IA-32
+versions of Windows, the code integrity module is activated at boot to ensure
+that all the loaded modules in the kernel have valid signatures, assuring that
+they have not been tampered with. Additionally, ARM versions of Windows 8
+extend the code integrity module with user-mode code integrity checks, which
+validate that all user programs have been signed by Microsoft or delivered
+through the Windows Store. Finally, enterprise versions of Windows 10 make it possible to opt in to a
+new security feature called Device Guard. This mechanism allows organizations
+to customize the digital signing requirements of their computer systems,
+as well as blacklist and whitelist individual signing certificates or even binary
+hashes. For example, an organization could choose to allow only user-mode
+programs signed by Microsoft, Google, or Adobe to launch on their enterprise
+computers.
+\subsubsection*{Reliability}
+Windows has extended
+the tools for achieving reliability to include automatic analysis of source code
+for errors, tests to detect validation failures, and an application version of the driver verifier that applies dynamic checking for many common user-mode
+programming errors. Other improvements in reliability have resulted from
+moving more code out of the kernel and into user-mode services. Windows
+provides extensive support for writing drivers in user mode. System facilities
+that were once in the kernel and are now in user mode include the renderer for
+third-party fonts and much of the software stack for audio.
+One of the most significant improvements in theWindows experience came
+from adding memory diagnostics as an option at boot time. This addition is
+especially valuable because so few consumer PCs have error-correcting memory.
+Bad RAM that lacks error correction and detection can change the data
+it stores—a change undetected by the hardware. The result is frustratingly
+erratic behavior in the system. The availability of memory diagnostics canwarn
+users of a RAM problem.Windows 10 took this even further by introducing runtime
+memory diagnostics. If a machine encounters a kernel-mode crash more
+than five times in a row, and the crashes cannot be pinpointed to a specific cause
+or component, the kernelwill use idle periods to move memory contents, flush
+system caches, and write repeated memory-testing patterns in all memory—
+all to preemptively discover if RAM is damaged. Users can then be informed of
+any issues without the need to reboot into the memory diagnostics tool at boot
+time. Windows 7 also introduced a fault-tolerant memory heap. The heap learns
+from application crashes and automatically adjusts memory operations carried
+out by an application that has crashed. This makes the application more reliable
+even if it contains common bugs such as using memory after freeing it or
+accessing past the end of the allocation. Because such bugs can be exploited
+by attackers,Windows 7 also includes amitigation for developers to block this
+feature and immediately crash any application with heap corruption. This is a
+very practical representation of the dichotomy that exists between the needs of
+security and the needs of user experience.
+\subsubsection*{Performance}
+Windows NT was designed for symmetrical multiprocessing (SMP); on a
+multiprocessor computer, several threads can run at the same time, even in the
+kernel. On each CPU, Windows NT uses priority-based preemptive scheduling
+of threads. Except while executing in the dispatcher or at interrupt level,
+threads in any process running in Windows can be preempted by higherpriority
+threads. Thus, the system responds quickly.
+Windows XP further improved performance by reducing the code-path
+length in critical functions and implementing more scalable locking protocols,
+such as queued spinlocks and pushlocks. (Pushlocks are like optimized spinlockswith
+read–write lock features.) The new locking protocols helped reduce
+system bus cycles and included lock-free lists and queues, atomic read–modify
+–write operations (like interlocked increment), and other advanced synchronization
+techniques. By the timeWindows 7was developed, several major changes had come to
+computing. The number of CPUs and the amount of physicalmemory available
+in the largest multiprocessors had increased substantially, so quite a lot of effort
+was put into further improving operating-system scalability.
+The implementation of multiprocessing support in Windows NT used bitmasks
+to represent collections of processors and to identify, for example,which
+set of processors a particular thread could be scheduled on. These bitmasks
+were defined as fitting within a singleword of memory, limiting the number of
+processors supported within a system to 64 on a 64-bit system and 32 on a 32-bit
+system. Thus, Windows 7 added the concept of processor groups to represent
+a collection of up to 64 processors. Multiple processor groups could be created,
+accommodating a total of more than 64 processors. To support task-based parallelism, the AMD64 ports ofWindows 7 and later
+versions provide a new form of user-mode scheduling (UMS). UMS allows
+programs to be decomposed into tasks, and the tasks are then scheduled on
+the available CPUs by a scheduler that operates in usermode rather than in the
+kernel.
+\subsubsection*{Extensibility}
+Extensibility refers to the capability of an operating system to keep up with
+advances in computing technology. To facilitate change over time, the developers
+implemented Windows using a layered architecture. Even in the kernel,Windows uses a layered architecture, with loadable
+drivers in the I/O system, so new file systems, new kinds of I/O devices, and
+new kinds of networking can be added while the system is running. Windows also uses a client–server model like the Mach operating system
+and supports distributed processing through remote procedure calls (RPCs) as
+defined by the Open Software Foundation. These RPCs take advantage of an
+executive component, called the advanced local procedure call (ALPC), that
+implements highly scalable communication between separate processes on a
+local machine.
+\subsubsection*{Portability}
+An operating system is portable if it can be moved from one CPU architecture
+to another with relatively few changes.Windows was designed to be portable.
+Like the UNIX operating system, Windows is written primarily in C and C++. Porting Windows to a new architecture mostly affects the Windows
+kernel, since the user-mode code in Windows is almost exclusively written
+to be architecture independent. To port Windows, the kernel’s architecturespecific
+code must be rewritten for the target CPU, and sometimes conditional
+compilation is needed in other parts of the kernel because of changes in major
+data structures, such as the page-table format. The entire Windows system
+must then be recompiled for the new CPU instruction set. Operating systems are sensitive not only to CPU architecture but also to CPU
+support chips and hardware boot programs. The CPU and support chips are
+collectively known as the chipset. These chipsets and the associated boot code
+determine how interrupts are delivered, describe the physical characteristics of
+each system, and provide interfaces to deeper aspects of the CPU architecture,
+such as error recovery and power management. It would be burdensome to
+have to port Windows to each type of support chip as well as to each CPU
+architecture. Instead,Windows isolates most of the chipset-dependent code in
+a dynamic link library (DLL), called the hardware-abstraction layer (HAL), that
+is loaded with the kernel. Over the years, Windows has been ported to a number of different CPU
+architectures: Intel IA-32-compatible 32-bit CPUs, AMD64-compatible and IA64
+64-bit CPUs, and DEC Alpha, DEC Alpha AXP64, MIPS, and PowerPC CPUs.
+Most of these CPU architectures failed in the consumer desktop market.When
+Windows 7 shipped, only the IA-32 and AMD64 architectures were supported
+on client computers, along with AMD64 on servers. With Windows 8, 32-bit
+ARM was added, and Windows 10 now supports ARM64 as well.
+\end{document}

@@ -13,4 +13,5 @@ Assignments for Winter Semester 2021-22 for Reg No 20BIT0406, VIT Vellore
 2022-04-27 TCP, UDP Socket Python Boilerplate codes<br/>
 2022-04-28 ITE1006 Digital Assignment 1<br/>
 2022-04-28 ITE2002 Lab DA<br/>
-2022-04-29 ITE1006 Digital Assignment 2
+2022-04-29 ITE1006 Digital Assignment 2<br/>
+2022-04-29 ITE2002 Digital Assignment 1
